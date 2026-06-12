@@ -11,3 +11,6 @@ data/
 
 # OS
 .DS_Store
+
+# Claude Code local context (not published)
+CLAUDE.md
