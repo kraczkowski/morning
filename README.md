@@ -48,13 +48,38 @@ morning stats                     # 14-day history, hit rate, average wake time
 - **Anti-snooze:** check-in is gated behind a randomized arithmetic problem to make
   sure you're actually awake.
 
-## Roadmap
+## Where this is going
 
-- [ ] Frontend (web UI) instead of CLI-only
+The CLI proves the idea: friction + accountability makes waking up a game. The
+limit is that the Mac can't ring a real alarm on the phone — Reminders sync, but
+alarms don't, and a reminder is easy to swipe away half-asleep.
+
+iOS 26 changed this. Apple's **AlarmKit** lets a third-party app create a real
+system alarm that rings through Silent mode and Focus, shows on the Lock Screen
+and Dynamic Island, and survives restarts. That makes the real goal possible:
+
+> A native iPhone alarm you can't dismiss until you solve the math, backed by an
+> accountability layer you can review on a bigger screen.
+
+### Roadmap (built in order of risk, not order of the diagram)
+
+- [ ] **Phase 0 — validate the gate.** Prototype AlarmKit and confirm dismissal
+      can be blocked behind the math challenge (the one make-or-break unknown).
+- [ ] **Phase 1 — the phone app.** SwiftUI + AlarmKit alarm with the anti-snooze
+      math gate. Streak/stats stored locally on the phone. Usable on day one, no
+      server needed.
+- [ ] **Phase 2 — the backend.** Port this tool's logic (streak math, hit
+      detection, challenge generation) into a Python API + DB. The phone posts
+      each check-in.
+- [ ] **Phase 3 — the dashboard.** Web/Mac frontend reading the API for a clear
+      view of streaks and hit rate over time — the big-screen stats view.
+
+The CLI's logic isn't throwaway: it becomes the backend's brain in Phase 2.
+
+### Carried over from the CLI era
+
 - [ ] Adjustable challenge difficulty (easier/harder math, configurable)
 - [ ] Write daily check-ins to an Obsidian vault
-- [ ] Scheduled evening reminder via `launchd`
-- [ ] Weekly summary by email
 
 ## License
 
